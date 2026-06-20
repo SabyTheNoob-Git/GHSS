@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>இயற்பியல் பயிற்சித் தேர்வு — Physics Practice Test</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700&family=Inter:wght@400;600;700;800&display=swap');
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Noto Sans Tamil', 'Inter', sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    min-height: 100vh;
+  }
+  .ui-font { font-family: 'Inter', 'Noto Sans Tamil', sans-serif; }
+  #app {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 24px 12px;
+  }
+  .teacher-wrap #app { max-width: 760px; }
+  .card { background: #fff; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); border: 1px solid #f1f5f9; }
+  .hero {
+    background: #1e1b4b;
+    border-radius: 16px 16px 0 0;
+    padding: 28px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(90deg, #fff 0px, #fff 1px, transparent 1px, transparent 24px);
+    opacity: 0.06;
+  }
+  .hero .eyebrow { color: #2dd4bf; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 8px; position: relative; }
+  .hero h1 { color: #fff; font-size: 24px; font-weight: 700; margin: 0; line-height: 1.4; position: relative; }
+  .hero p { color: #c7d2fe; font-size: 14px; margin: 8px 0 0; position: relative; }
+  .panel { border-radius: 0 0 16px 16px; padding: 24px; }
+  label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.04em; }
+  input[type=text] {
+    width: 100%; margin-top: 4px; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px;
+    font-size: 15px; color: #1e293b; font-family: inherit;
+  }
+  input[type=text]:focus { outline: none; border-color: #14b8a6; box-shadow: 0 0 0 2px rgba(20,184,166,0.2); }
+  .field { margin-bottom: 14px; }
+  .btn {
+    font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: 0.01em; border: none; cursor: pointer;
+    padding: 13px; border-radius: 10px; font-size: 15px; width: 100%; transition: background 0.15s;
+  }
+  .btn-primary { background: #0d9488; color: #fff; }
+  .btn-primary:hover { background: #0f766e; }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn-dark { background: #1e1b4b; color: #fff; }
+  .btn-dark:hover { background: #312e81; }
+  .btn-outline { background: #fff; color: #1e1b4b; border: 2px solid #1e1b4b; }
+  .err { color: #e11d48; font-size: 13px; margin: 6px 0; }
+  .link-btn { background: none; border: none; color: #94a3b8; font-size: 12px; text-decoration: underline; cursor: pointer; width: 100%; margin-top: 14px; font-family: 'Inter', sans-serif; }
+  .hint { font-size: 11px; color: #94a3b8; text-align: center; line-height: 1.5; margin-top: 12px; }
+
+  .qtop { display:flex; justify-content: space-between; align-items:center; margin-bottom: 8px; }
+  .chip { font-family:'Inter',sans-serif; font-size: 11px; font-weight: 700; color: #312e81; background:#eef2ff; padding: 4px 10px; border-radius: 999px; }
+  .qcount { font-family:'Inter',sans-serif; font-size: 12px; font-weight:600; color:#94a3b8; }
+  .progress-track { position: relative; height: 6px; background:#e2e8f0; border-radius: 999px; overflow: visible; }
+  .progress-fill { position:absolute; left:0; top:0; height:100%; background:#14b8a6; border-radius:999px; transition: width 0.3s; }
+  .progress-dot { position:absolute; top:50%; width:10px; height:10px; border-radius:50%; background:#fbbf24; transform: translateY(-50%); box-shadow: 0 0 0 4px rgba(20,184,166,0.15); transition: left 0.3s; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
+  .progress-dot { animation: pulse 1.6s ease-in-out infinite; }
+
+  .qcard { padding: 20px; margin-top: 12px; }
+  .qtext { font-size: 17px; line-height: 1.65; font-weight: 500; color: #1e293b; margin: 0 0 18px; }
+  .opt {
+    display:block; width:100%; text-align:left; padding: 12px 16px; border-radius: 12px;
+    border: 2px solid #e2e8f0; background:#fff; color:#334155; margin-bottom: 10px; cursor:pointer;
+    font-size: 15px; line-height: 1.5; font-family: inherit;
+  }
+  .opt:hover { border-color: #cbd5e1; }
+  .opt.selected { border-color: #14b8a6; background:#f0fdfa; color:#134e4a; }
+  .opt-letter {
+    display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%;
+    font-family:'Inter',sans-serif; font-size:12px; font-weight:700; background:#f1f5f9; color:#64748b; margin-right:10px;
+  }
+  .opt.selected .opt-letter { background:#14b8a6; color:#fff; }
+  .navrow { display:flex; gap:12px; margin-top: 14px; }
+  .navrow .btn { flex:1; }
+
+  .score-big { font-family:'Inter',sans-serif; font-size: 48px; font-weight: 800; color:#fff; }
+  .score-total { font-size: 24px; color:#a5b4fc; }
+  .chbar-row { margin-bottom: 12px; }
+  .chbar-label { display:flex; justify-content:space-between; font-size:12px; color:#64748b; margin-bottom:4px; }
+  .chbar-track { height:6px; background:#f1f5f9; border-radius:999px; overflow:hidden; }
+  .chbar-fill { height:100%; background:#14b8a6; }
+
+  .rev-chapter { margin-bottom: 16px; overflow:hidden; }
+  .rev-chapter-head { background:#eef2ff; padding: 12px 16px; font-family:'Inter',sans-serif; font-weight:700; font-size:14px; color:#312e81; }
+  .rev-q { padding: 14px 16px; border-top: 1px solid #f1f5f9; }
+  .rev-qtext { font-size: 14px; line-height:1.6; color:#1e293b; margin: 0 0 8px; }
+  .rev-ans { font-size: 12px; margin-bottom: 3px; }
+  .rev-correct { color:#0d9488; }
+  .rev-wrong { color:#e11d48; }
+  .rev-skip { color:#94a3b8; }
+  .video-box { position:relative; aspect-ratio: 16/9; border-radius: 10px; overflow:hidden; background:#000; margin-top:8px; }
+  .video-box img { width:100%; height:100%; object-fit:cover; opacity:0.8; }
+  .video-box iframe { width:100%; height:100%; border:0; }
+  .play-overlay { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; cursor:pointer; border:none; background:none; padding:0; width:100%; }
+  .play-btn { width:44px; height:44px; border-radius:50%; background:#e11d48; display:flex; align-items:center; justify-content:center; }
+  .play-btn::after { content:""; border-style:solid; border-width:7px 0 7px 11px; border-color:transparent transparent transparent #fff; margin-left:3px; }
+  .video-title { font-family:'Inter',sans-serif; font-size:11px; color:#fff; background:rgba(0,0,0,0.6); padding:2px 8px; border-radius:999px; }
+
+  .toast { font-size:12px; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+
+const QUESTIONS = [
+  {
+    id: `c1q1`,
+    chapter: `Electrostatics`,
+    text: `மைனஸ் q மின்னூட்ட மதிப்புள்ள இரு புள்ளி மின்துகள்கள் படத்தில் உள்ளவாறு வைக்கப்பட்டுள்ளன. இவற்றுக்கு நடுவில் P என்ற புள்ளியில் பிளஸ் q மதிப்புள்ள மூன்றாவது மின்துகள் வைக்கப்படுகிறது. P லிருந்து அம்புக்குறியிட்டு காட்டப்பட்டுள்ள திசைகளில் சிறிய தொலைவுகளுக்கு பிளஸ் q மின்துகள் நகர்த்தப்பட்டால் எந்தத் திசை அல்லது திசைகளில், இடப்பெயர்ச்சியைப் பொருத்து, பிளஸ் q ஆனது சமநிலையில் இருக்கும்?`,
+    options: [`A one மற்றும் A two`, `B 1 மற்றும் B 2`, `இரு திசைகளிலும்`, `சமநிலையில் இருக்காது`],
+    correct: `B 1 மற்றும் B 2`,
+  },
+  {
+    id: `c1q2`,
+    chapter: `Electrostatics`,
+    text: `பின்வரும் மின்துகள் நிலையமைப்புகளில் எது சீரான மின்புலத்தை உருவாக்கும்?`,
+    options: [`புள்ளி மின்துகள்`, `சீரான மின்னூட்டம் பெற்றமுடிவிலா கம்பி`, `சீரான மின்னூட்டம் பெற்றமுடிவிலா சமதளம்`, `சீரான மின்னூட்டம் பெற்ற கோளகக் கூடு`],
+    correct: `சீரான மின்னூட்டம் பெற்றமுடிவிலா சமதளம்`,
+  },
+  {
+    id: `c1q3`,
+    chapter: `Electrostatics`,
+    text: `பின்வரும் மின்புலக் கோடுகளின் வடிவமைப்பிலிருந்து இம்மின்துகள்களின் மின்னூட்ட விகிதம் modulus q one / q two என்ன?`,
+    options: [`15`, `25 / 11`, `5`, `11 / 25`],
+    correct: `11 / 25`,
+  },
+  {
+    id: `c1q4`,
+    chapter: `Electrostatics`,
+    text: `2 × 10⁵ Neuton per coulomb மதிப்புள்ள மின்புலத்தில் 30 ° ஒருங்கமைப்பு கோணத்தில் மின் இருமுனை ஒன்று வைக்கப்பட்டுள்ளது. அதன்மீது செயல்படும் திருப்புவிசையின் மதிப்பு 8 Neuton meter. மின் இருமுனையின் நீளம் 1 சென்டி மீட்டர் எனில் அதிலுள்ள ஒரு மின்துகளின் மின்னூட்ட எண் மதிப்பு`,
+    options: [`4 meter Coulomb`, `8 meter Coulomb`, `5 meter Coulomb`, `7 meter Coulomb`],
+    correct: `8 meter Coulomb`,
+  },
+  {
+    id: `c1q5`,
+    chapter: `Electrostatics`,
+    text: `மின்துகள்களை உள்ளடக்கிய நான்கு காஸியன் பரப்புகள் படத்தில் காட்டப்பட்டுள்ளன. ஒவ்வொரு காஸியன் பரப்பையும் கடக்கும் மின்பாய மதிப்புகளை தரவரிசையில் எழுதுக.`,
+    options: [`D < C < B < A`, `A < B = C < D`, `C < A = B < D`, `D > C > B > A`],
+    correct: `D < C < B < A`,
+  },
+  {
+    id: `c1q6`,
+    chapter: `Electrostatics`,
+    text: `நீருக்குள் வைக்கப்பட்டுள்ள மூடிய பரப்பின் மொத்த மின்பாய மதிப்பு dash`,
+    options: [`80 q / epsilon not`, `q / 40 epsilon not`, `q / 80 epsilon not`, `q / 160 epsilon not`],
+    correct: `q / 40 epsilon not`,
+  },
+  {
+    id: `c1q7`,
+    chapter: `Electrostatics`,
+    text: `q one மற்றும் q two ஆகிய நேர் மின்னூட்ட அளவு கொண்ட இரு ஒரே மாதிரியான மின்கடத்துப் பந்துகளின் மையங்கள் r இடைவெளியில் பிரிக்கப்பட்டு உள்ளன. அவற்றை ஒன்றோடொன்று தொடச் செய்துவிட்டு பின்னர் அதே இடைவெளியில் பிரித்து வைக்கப்படுகின்றன, எனில் அவற்றிற்கு இடையேயான விசை (N S E P 04 to 05)`,
+    options: [`முன்பைவிடக் குறைவாக இருக்கும்`, `அதேயளவு இருக்கும்`, `முன்பைவிட அதிகமாக இருக்கும்`, `சுழி`],
+    correct: `முன்பைவிட அதிகமாக இருக்கும்`,
+  },
+  {
+    id: `c1q8`,
+    chapter: `Electrostatics`,
+    text: `பின்வரும் மின்துகள் அமைப்புகளின் நிலை மின்னழுத்த ஆற்றல்களை இறங்கு வரிசையில் எழுதுக.`,
+    options: [`1 eqaul to 4 < 2 < 3`, `2 eqaul to 4 < 3 < 1`, `2 eqaul to 3 < 1 < 4`, `3 < 1 < 2 < 4`],
+    correct: `1 eqaul to 4 < 2 < 3`,
+  },
+  {
+    id: `c1q9`,
+    chapter: `Electrostatics`,
+    text: `வெளிப்பரப்பின் ஒரு பகுதியில் மின்புலம், e vector = 10 x I cap நிலவுகிறது. V not என்பது ஆதிப்புள்ளியில் மின்னழுத்தம் V a என்பது x = 2 m தொலைவில் மின்னழுத்தம் எனில் மின்னழுத்த வேறுபாடு V = V not - V a இன் மதிப்பு`,
+    options: [`10 Volt`, `- 20 Volt`, `plus 20 Volt`, `- 10 Volt`],
+    correct: `plus 20 Volt`,
+  },
+  {
+    id: `c1q11`,
+    chapter: `Electrostatics`,
+    text: `A மற்றும் B ஆகியஇரு புள்ளிகள் முறையே 7 Volt மற்றும் - 4 Volt மின்னழுத்தத்தில் வைக்கப்பட்டுள்ளன எனில் A லிருந்து B க்கு 50 எலக்ட்ரான்களை நகர்த்தச் செய்யப்படும் வேலை`,
+    options: [`8.80 × 10⁻¹⁷ Joule`, `- 8.80 × 10⁻¹⁷ Joule`, `4.40 × 10⁻¹⁷ Joule`, `5.80 × 10⁻¹⁷ Joule`],
+    correct: `8.80 × 10⁻¹⁷ Joule`,
+  },
+  {
+    id: `c1q12`,
+    chapter: `Electrostatics`,
+    text: `ஒரு மின்தேக்கிக்கு அளிக்கப்படும் மின்னழுத்த வேறுபாடு Volt லிருந்து 2 Volt ஆக அதிகரிக்கப்படுகிறது எனில், பின்வருவனவற்றுள் சரியான முடிவினைத் தேர்ந்தெடுக்க.`,
+    options: [`Q மாறாமலிருக்கும், C இரு மடங்காகும்`, `Q இரு மடங்காகும், C இரு மடங்காகும்`, `C மாறாமலிருக்கும், Q இரு மடங்காகும்`, `Q மற்றும் C இரண்டுமேமாறாமலிருக்கும்`],
+    correct: `C மாறாமலிருக்கும், Q இரு மடங்காகும்`,
+  },
+  {
+    id: `c1q13`,
+    chapter: `Electrostatics`,
+    text: `இணைத்தட்டு மின்தேக்கி ஒன்று V மின்னழுத்த வேறுபாட்டில் Q அளவு மின்னூட்டம் கொண்ட மின்துகள்களை சேமிக்கிறது. தட்டுகளின் பரப்பளவும் தட்டுகளுக்கு இடையேயான தொலைவும் இருமடங்கானால் பின்வருவனவற்றுள் எந்த அளவு மாறுபடும்.`,
+    options: [`மின் தேக்குத்திறன்`, `மின்துகள்`, `மின்னழுத்த வேறுபாடு`, `ஆற்றல் அடர்த்தி`],
+    correct: `ஆற்றல் அடர்த்தி`,
+  },
+  {
+    id: `c1q14`,
+    chapter: `Electrostatics`,
+    text: `மூன்று மின்தேக்கிகள் படத்தில் உள்ளவாறு முக்கோண வடிவ அமைப்பில் இணைக்கப்பட்டுள்ளன. A மற்றும் C ஆகிய புள்ளிகளுக்கிடையே உள்ள இணைமாற்று மின்தேக்குத்திறன்`,
+    options: [`1 μF`, `2 μF`, `3 μF`, `1 / 4 μF`],
+    correct: `2 μF`,
+  },
+  {
+    id: `c1q15`,
+    chapter: `Electrostatics`,
+    text: `1 சென்டிமீட்டர் மற்றும் 3 சென்டிமீட்டர் ஆரமுள்ள இரு உலோகக் கோளங்களுக்கு முறையே - 1 × 10⁻² Coulomb மற்றும் 5 × 10⁻² Coulomb அளவு மின்னூட்டங்கள் கொண்ட மின்துகள்கள் அளிக்கப்படுகின்றன. இவ்விரு கோளங்களும் ஒரு மின்கடத்து கம்பியினால் இணைக்கப்பட்டால் பெரிய கோளத்தில், இறுதியாக இருக்கும் மின்னூட்டமதிப்பு (AIIPMT -2012)`,
+    options: [`3 × 10⁻² Coulomb`, `4 × 10⁻² Coulomb`, `1 × 10⁻² Coulomb`, `2 × 10⁻² Coulomb`],
+    correct: `3 × 10⁻² Coulomb`,
+  },
+  {
+    id: `c2q1`,
+    chapter: `Current Electricity`,
+    text: `பின்வரும் வரைபடத்தில் ஒரு பெயர் தெரியாத கடத்திக்கு அளிக்கப்பட்ட மின்னழுத்த வேறுபாடு மற்றும் மின்னோட்ட மதிப்புகளின் தொடர்பு காட்டப்பட்டுள்ளது. இந்த கடத்தியின் மின்தடை என்ன?`,
+    options: [`2 Ω`, `4 Ω`, `8 Ω`, `1 Ω`],
+    correct: `2 Ω`,
+  },
+  {
+    id: `c2q2`,
+    chapter: `Current Electricity`,
+    text: `ஒரு மீட்டர் நீளத்திற்கு 2 Ω மின்தடை கொண்ட கம்பியானது 1 மீட்டர் ஆரமுள்ள வட்ட வடிவமாக மாற்றப்படுகிறது. வட்டத்தின் வழியே எதிரெதிராக படத்தில் உள்ள A மற்றும் B புள்ளிகளுக்குகிடையே தொகுபயன் மின்தடையின் மதிப்பு காண்க.`,
+    options: [`pai Ω`, `pai / two Ω`, `two pai Ω`, `pai / four Ω`],
+    correct: `pai Ω`,
+  },
+  {
+    id: `c2q3`,
+    chapter: `Current Electricity`,
+    text: `ஒரு ரொட்டி சுடும் மின் இயந்திரம் 240 வோல்ட் இல் செயல்படுகிறது, அதன் மின்தடை120 Ω எனில் அதன்திறன்`,
+    options: [`400 Watts`, `2 Watts`, `480 Watts`, `240 Watts`],
+    correct: `480 Watts`,
+  },
+  {
+    id: `c2q4`,
+    chapter: `Current Electricity`,
+    text: `ஒரு கார்பன் மின்தடையாக்கியின் மின்தடை மதிப்பு (47 ± 4.7) k Ω எனில் அதில் இடம்பெறும் நிறவளையங்களின் வரிசை`,
+    options: [`மஞ்சள் – பச்சை – ஊதா – தங்கம்`, `மஞ்சள் – ஊதா – ஆரஞ்சு – வெள்ளி`, `ஊதா – மஞ்சள் – ஆரஞ்சு – வெள்ளி`, `பச்சை – ஆரஞ்சு – ஊதா - தங்கம்`],
+    correct: `மஞ்சள் – ஊதா – ஆரஞ்சு – வெள்ளி`,
+  },
+  {
+    id: `c2q5`,
+    chapter: `Current Electricity`,
+    text: `பின்வரும் மின்தடையின்மதிப்பு என்ன?`,
+    options: [`100 kilo Ω`, `10 kilo Ω`, `1 kilo Ω`, `1000 kilo Ω`],
+    correct: `100 kilo Ω`,
+  },
+  {
+    id: `c2q6`,
+    chapter: `Current Electricity`,
+    text: `ஒரே நீளமும் மற்றும் ஒரே பொருளால் செய்யப்பட்ட A மற்றும் B என்ற இரு கம்பிகள் வட்ட வடிவ குறுக்கு பரப்பையும் கொண்டுள்ளன. RA = 3 RB எனில் A கம்பியின் ஆரத்திற்கும் B கம்பியின் ஆரத்திற்கும் இடைப்பட்ட தகவு என்ன?`,
+    options: [`3`, `root 3`, `1 / root 3`, `1 / 3`],
+    correct: `1 / root 3`,
+  },
+  {
+    id: `c2q7`,
+    chapter: `Current Electricity`,
+    text: `230 Volt மின்னழுத்த மூலத்துடன் இணைக்கப்பட்ட கம்பியில் திறன் இழப்பு P1. அக்கம்பியானது இரு சமமான பகுதிகளாக வெட்டப்பட்டு இரு துண்டுகளும் பக்க இணைப்பில் அதே மின்னழுத்த மூலத்துடன் இணைக்கப்படுகின்றன. இந்நிலையில் திறன் இழப்பு P 2 எனில் p two / p one எனும் விகிதம்`,
+    options: [`1`, `2`, `3`, `4`],
+    correct: `4`,
+  },
+  {
+    id: `c2q8`,
+    chapter: `Current Electricity`,
+    text: `இந்தியாவில் வீடுகளின் பயன்பாட்டிற்கு 220 வோல்ட் மின்னழுத்த வேறுபாட்டில் மின்சாரம் அளிக்கப்படுகிறது. இது அமெரிக்காவில் 110 வோல்ட் அளவு என அளிக்கப்படுகிறது. இந்தியாவில் பயன்படுத்தப்படும் 60 வாட்ஸ் மின்விளக்கின் மின்தடை R எனில், அமெரிக்காவில் பயன்படுத்தப்படும் 60 வாட்ஸ் மின்விளக்கின் மின்தடை`,
+    options: [`R`, `2R`, `R / 4`, `R / 2`],
+    correct: `R / 4`,
+  },
+  {
+    id: `c2q9`,
+    chapter: `Current Electricity`,
+    text: `ஒரு பெரிய கட்டிடத்தில், 40 வாட்ஸ் மின்விளக்குகள் 15, 100 வாட்ஸ் மின்விளக்குகள் 5, 80 வாட்ஸ் மின்விசிறிகள் 5 மற்றும் 1 kW மின்சூடேற்றி 1 ஆகியவை இணைக்கப்பட்டுள்ளன. மின் மூலத்தின் மின்னழுத்தம் 220 வோல்ட் எனில் கட்டிடத்தின் மைய மின் உருகியின் அதிக பட்ச மின்னோட்டம் தாங்கும் அளவு (IIT-JEE 2014)`,
+    options: [`14 (A)`, `8 (A)`, `10 (A)`, `12 (A)`],
+    correct: `12 (A)`,
+  },
+  {
+    id: `c2q10`,
+    chapter: `Current Electricity`,
+    text: `பின்வரும் மின்சுற்றில் உள்ளமின்னோட்டம் 1 A எனில் மின்தடையின்மதிப்பு என்ன?`,
+    options: [`1.5 Ω`, `2.5 Ω`, `3.5 Ω`, `4.5 Ω`],
+    correct: `3.5 Ω`,
+  },
+  {
+    id: `c2q11`,
+    chapter: `Current Electricity`,
+    text: `மின்கல அடுக்கிலிருந்து வெளிவரும் மின்னோட்டத்தின் மதிப்பு என்ன?`,
+    options: [`1 Ampere`, `2 Ampere`, `3 Ampere`, `4 Ampere`],
+    correct: `1 Ampere`,
+  },
+  {
+    id: `c2q12`,
+    chapter: `Current Electricity`,
+    text: `ஒரு கம்பியின் வெப்பநிலை மின்தடை எண் 0.00125/°C. 20°C வெப்பநிலையில் கம்பியின் மின்தடை1 Ω எனில் எந்த வெப்பநிலையில் அதன் மின்தடை2 Ω ஆகும்?`,
+    options: [`800 ° Celsius`, `700 ° Celsius`, `850 ° Celsius`, `820 ° Celsius`],
+    correct: `820 ° Celsius`,
+  },
+  {
+    id: `c2q13`,
+    chapter: `Current Electricity`,
+    text: `2.1 Volt மின்கலமானது 10 Ω மின்தடைவழியே 0.2 Ampere மின்னோட்டத்தை செலுத்தினால் அதன் அகமின்தடை`,
+    options: [`0.2 Ω`, `0.5 Ω`, `0.8 Ω`, `1.0 Ω`],
+    correct: `0.5 Ω`,
+  },
+  {
+    id: `c2q14`,
+    chapter: `Current Electricity`,
+    text: `ஒரு தாமிரத்துண்டு மற்றும் மற்றொரு ஜெர்மானியத் துண்டு ஆகியவற்றின் வெப்பநிலையானது அறை வெப்பநிலையிலிருந்து 80 K வெப்பநிலைக்கு குளிர்விக்கப்படுகிறது.`,
+    options: [`இரண்டின்மின்தடையும் அதிகரிக்கும்.`, `இரண்டின்மின்தடையும் குறையும்`, `தாமிரத்தின் மின்தடை அதிகரிக்கும். ஆனால் ஜெர்மானியத்தின் மின்தடை குறையும்`, `தாமிரத்தின் மின்தடை குறையும். ஆனால் ஜெர்மானியத்தின் மின்தடை அதிகரிக்கும்.`],
+    correct: `தாமிரத்தின் மின்தடை குறையும். ஆனால் ஜெர்மானியத்தின் மின்தடை அதிகரிக்கும்.`,
+  },
+  {
+    id: `c2q15`,
+    chapter: `Current Electricity`,
+    text: `ஜுலின் வெப்பவிதியில், R மற்றும் t மாறிலிகளாக உள்ளது. H ஐ y அச்சிலும் I ² ஐ x அச்சிலும் கொண்டு வரையப்பட்ட வரைபடம் ஒரு`,
+    options: [`நேர்க்கோடு`, `பரவளையம்`, `வட்டம்`, `நீள்வட்டம்`],
+    correct: `நேர்க்கோடு`,
+  },
+  {
+    id: `c3q2`,
+    chapter: `Magnetism`,
+    text: `சீரான மின்னூட்ட அடர்த்தி sigma கொண்ட மின்னூட்டப்பட்ட இணைத்தட்டு மின்தேக்கியின் இரண்டு தகடுகளுக்கு நடுவே எலக்ட்ரான் ஒன்று நேர்க்கோட்டுப் பாதையில் செல்கிறது. சீரான காந்தப்புலத்திற்கு b vector நடுவே இந்த அமைப்பு உள்ளபோது, எலக்ட்ரான் தகடுகளைக் கடக்க எடுத்துக்கொள்ளும் நேரம்`,
+    options: [`epsilon not × e l b / sigma`, `epsilon not × l b / sigma l`, `epsilon not × l b / e sigma`, `epsilon not × l b / sigma`],
+    correct: `epsilon not × l b / sigma`,
+  },
+  {
+    id: `c3q3`,
+    chapter: `Magnetism`,
+    text: `செங்குத்தாக செயல்படும் காந்தப்புலத்தில் b vector உள்ள, q மின்னூட்டமும் m நிறையும் கொண்ட துகளொன்று V மின்னழுத்த வேறுபாட்டால் முடுக்கப்படுகிறது. அத்துகளின் மீது செயல்படும் விசையின் மதிப்பு என்ன?`,
+    options: [`root of two q ³ × B V / m`, `root of two q ³ × B ² V / two m`, `root of two q ³ × B ² V / m`, `root of two q ³ × B V / m ³`],
+    correct: `root of two q ³ × B ² V / m`,
+  },
+  {
+    id: `c3q4`,
+    chapter: `Magnetism`,
+    text: `5 cm ஆரமும், 50 சுற்றுகளும் கொண்ட வட்டவடிவக் கம்பிச்சுருளின் வழியே 3 ஆம்பியர் மின்னோட்டம் பாய்கிறது. அக்கம்பிச்சுருளின் காந்த இருமுனைத் திருப்புத்திறனின் மதிப்பு என்ன?`,
+    options: [`1.0 Ampere meter ²`, `1.2 Ampere meter ²`, `0.5 Ampere meter ²`, `0.8 Ampere meter ²`],
+    correct: `1.2 Ampere meter ²`,
+  },
+  {
+    id: `c3q5`,
+    chapter: `Magnetism`,
+    text: `மெல்லிய காப்பிடப்பட்ட கம்பியினால் செய்யப்பட்ட சமதளசுருள் (plane spiral) ஒன்றின் சுற்றுகளின் எண்ணிக்கை N = 100. நெருக்கமாக சுற்றப்பட்ட சுற்றுகளின் வழியே I = 8 m A அளவு மின்னோட்டம் பாய்கிறது. கம்பிச்சுருளின் உட்புற மற்றும் வெளிப்புற ஆரங்கள் முறையே a = 50 mm மற்றும் b = 100 mm எனில், சுருளின் மையத்தில் ஏற்படும் காந்தத்தூண்டலின் மதிப்பு`,
+    options: [`5 micro Tesla`, `7 micro Tesla`, `8 micro Tesla`, `10 micro Tesla`],
+    correct: `7 micro Tesla`,
+  },
+  {
+    id: `c3q6`,
+    chapter: `Magnetism`,
+    text: `சமநீளமுடைய மூன்று கம்பிகள் வளைக்கப்பட்டு சுற்றுகளாக மாற்றப்பட்டுள்ளன. ஒன்று வட்ட வடிவிலும் மற்றொன்று அரை வட்ட வடிவிலும் மூன்றாவது சதுர வடிவிலும் உள்ளன. மூன்று சுற்றுகளின் வழியாகவும் ஒரே அளவு மின்னோட்டம் செலுத்தப்பட்டு சீரான காந்தப்புலம் ஒன்றில் வைக்கப்பட்டுள்ளன. மூன்று சுற்றுகளின்எந்த வடிவமைப்பில் உள்ளசுற்று பெரும திருப்பு விசையை உணரும்?`,
+    options: [`வட்ட வடிவம்`, `அரைவட்ட வடிவம்`, `சதுரவடிவம்`, `இவைஅனைத்தும்`],
+    correct: `வட்ட வடிவம்`,
+  },
+  {
+    id: `c3q7`,
+    chapter: `Magnetism`,
+    text: `N சுற்றுக்களும் R ஆரமும் கொண்ட இரு கம்பிச்சுருள்கள் படத்தில் காட்டியுள்ளவாறு R தொலைவில் பொது அச்சில் அமையும் படி வைக்கப்பட்டுள்ளன. கம்பிச்சுருள்களின் வழியே ஒரே திசையில் I மின்னோட்டம் பாயும்போது கம்பிச்சுருள்களின் நடுவே மிகச்சரியாக R / 2 தொலைவில் உள்ள P புள்ளியில் ஏற்படும் காந்தப்புலம்`,
+    options: [`8 N mew not I divided / root of 5 R`, `8 N mew not I divided / root of 5 power three / twp R`, `8 N mew not I divided / 5 R`, `4 N mew not I divided / root of 5 R`],
+    correct: `8 N mew not I divided / root of 5 power three / twp R`,
+  },
+  {
+    id: `c3q8`,
+    chapter: `Magnetism`,
+    text: `l நீளமுள்ள கம்பி ஒன்றின் வழியே Y திசையில் I மின்னோட்டம் பாய்கிறது. இக்கம்பியை b vector = beeta / route three × I cap plus j cap plus k cap × t என்ற காந்தப்புலத்தில் வைக்கும்போது, அக்கம்பியின்மீது செயல்படும் லாரன்ஸ் விசையின் எண்மதிப்பு`,
+    options: [`root of two / three × beeta l l`, `root of one / three × beeta l l`, `root two × beeta l l`, `root of one / two × beeta l l`],
+    correct: `root of two / three × beeta l l`,
+  },
+  {
+    id: `c3q9`,
+    chapter: `Magnetism`,
+    text: `l நீளமும் p m திருப்புத்திறனும் கொண்ட சட்டகாந்தமொன்று படத்தில் காட்டியுள்ளவாறு வில் போன்று வளைக்கப்பட்டுள்ளது. சட்டகாந்தத்தின் புதிய காந்த இருமுனை திருப்புத்திறனின் மதிப்பு (NEET 2013)`,
+    options: [`P m`, `three / pai × P m`, `two / pai × P m`, `one / two × P m`],
+    correct: `three / pai × P m`,
+  },
+  {
+    id: `c3q10`,
+    chapter: `Magnetism`,
+    text: `q மின்னூட்டமும், m நிறையும் மற்றும் r ஆரமும் கொண்ட மின்கடத்தா வளையம் ஒன்று omega என்ற சீரான கோணவேகத்தில் சுழற்றப்படுகிறது எனில், காந்தத்திருப்புத் திறனுக்கும் கோண உந்தத்திற்கும் உள்ள விகிதம் என்ன`,
+    options: [`q / (m)`, `two q / (m)`, `q / two (m)`, `q / four (m)`],
+    correct: `q / two (m)`,
+  },
+  {
+    id: `c3q11`,
+    chapter: `Magnetism`,
+    text: `ஃபெர்ரோ காந்தப்பொருள் ஒன்றின் B-H வளைகோடு பின்வரும் படத்தில் காட்டப்பட்டுள்ளது. இப்பெர்ரோ காந்தப்பொருள் 1 cm க்கு 1000 சுற்றுகள் கொண்ட நீண்ட வரிச்சுருளின் உள்ளே வைக்கப்பட்டுள்ளது. ஃபெர்ரோ காந்தப்பொருளின் காந்தத் தன்மையை முழுவதும் நீக்கவேண்டுமெனில் வரிச்சுருள் வழியே எவ்வளவு மின்னோட்டத்தை செலுத்த வேண்டும்?`,
+    options: [`1.00 milli Ampere`, `1.25 milli Ampere`, `1.50 milli Ampere`, `1.75 milli Ampere`],
+    correct: `1.50 milli Ampere`,
+  },
+  {
+    id: `c3q12`,
+    chapter: `Magnetism`,
+    text: `இரண்டு குட்டையான சட்ட காந்தங்களின் காந்தத்திருப்புத்திறன்கள் முறையே 1.20 Ampere meter ² மற்றும் 1.00 Ampere meter ² ஆகும். இவை ஒன்றுக்கொன்று இணையாக உள்ளவாறு அவற்றின் வடமுனை, தென்திசையை நோக்கி இருக்கும்படி கிடைத்தள மேசை மீது வைக்கப்பட்டுள்ளன. இவ்விரண்டு குட்டை காந்தங்களுக்கும் காந்த நடுவரை (Magnetic equator) பொதுவானதாகும். மேலும் அவை 20.0 cm தொலைவில் பிரித்து வைக்கப்பட்டுள்ளன. இவ்விரண்டு காந்தமையங்களையும் இணைக்கும் கோட்டின் நடுவே புள்ளியில் ஏற்படும் நிகரகாந்தப்புலத்தின் கிடைத்தள மதிப்பு என்ன? (புவிக் காந்தப்புலத்தின்கிடைத்தளமதிப்பு 3.6 × 10⁻⁵ Weber meter ⁻²) (NSEP 2000-2001)`,
+    options: [`3.60 × 10⁻⁵ Weber meter ⁻²`, `3.5 × 10⁻⁵ Weber meter ⁻²`, `2.56 × 10⁻⁵ Weber meter ⁻²`, `2.2 × 10⁻⁵ Weber meter ⁻²`],
+    correct: `2.56 × 10⁻⁵ Weber meter ⁻²`,
+  },
+  {
+    id: `c3q13`,
+    chapter: `Magnetism`,
+    text: `புவி காந்தப்புலத்தின் செங்குத்துக்கூறும், கிடைத்தளக்கூறும் சமமதிப்பைப் பெற்றுள்ள இடத்தின் சரிவுக் கோணத்தின் மதிப்பு?`,
+    options: [`30 °`, `45 °`, `60 °`, `90 °`],
+    correct: `45 °`,
+  },
+  {
+    id: `c3q14`,
+    chapter: `Magnetism`,
+    text: `R ஆரமும், sigma பரப்பு மின்னூட்ட அடர்த்தியும் கொண்ட மின்காப்புப் பெற்ற தட்டு அதன் பரப்பின் மீது அதிகப்படியான மின்னூட்டங்களைப் பெற்றுள்ளது. தட்டின் பரப்பிற்கு செங்குத்தாக உள்ள அச்சைப்பொறுத்து omega என்ற கோண திசைவேகத்துடன் இது சுற்றுகிறது. சுழலும் அச்சுக்கு செங்குத்தான திசையில் செயல்படும் B வலிமை கொண்ட காந்தப்புலத்திற்கு நடுவே இத்தகடு சுழன்றால், அதன்மீது செயல்படும் திருப்புத்திறனின் எண்மதிப்பு என்ன?`,
+    options: [`one / four × sigma omega pai (B) (R)`, `one / four × sigma omega pai B R ²`, `one / four × sigma omega pai B R power ³`, `one / four × sigma omega pai B R ⁴`],
+    correct: `one / four × sigma omega pai B R ⁴`,
+  },
+  {
+    id: `c3q15`,
+    chapter: `Magnetism`,
+    text: `pn cap = - 0.5 I cap plus 0.4 j cap × A m ² என்ற வெக்டர் மதிப்புடைய காந்த இருமுனையானது, b vector = 0.2 I cap T என்ற சீரான காந்தப்புலத்தில் வைக்கப்பட்டால் அதன் நிலையாற்றல் மதிப்பு`,
+    options: [`- 0.1 Joule`, `- 0.8 Joule`, `0.1 Joule`, `0.8 Joule`],
+    correct: `0.1 Joule`,
+  },
+  {
+    id: `c4q1`,
+    chapter: `EM Induction & AC`,
+    text: `சரியான விடையைத் தேர்ந்தெடுத்து எழுதுக 1. படத்தில் காட்டியுள்ளவாறு ஒரு எலக்ட்ரான் நேர்க்கோட்டுப்பாதை XY - இல் இயங்குகிறது. கம்பிச்சுற்று abcd எலக்ட்ரானின் பாதைக்கு அருகில் உள்ளது. கம்பிச்சுற்றில் ஏதேனும் மின்னோட்டம் தூண்டப்பட்டால் அதன் திசையாது? (NEET - 2015)`,
+    options: [`எலக்ட்ரான் கம்பிச்சுருளைக் கடக்கும்போது, மின்னோட்டம் அதன் திசையை திருப்புகிறது`, `மின்னோட்டம் தூண்டப்படாது`, `(a) (b) (c) (d)`, `(a) (d) (c) (b)`],
+    correct: `எலக்ட்ரான் கம்பிச்சுருளைக் கடக்கும்போது, மின்னோட்டம் அதன் திசையை திருப்புகிறது`,
+  },
+  {
+    id: `c4q2`,
+    chapter: `EM Induction & AC`,
+    text: `படத்தில் காட்டியுள்ளவாறு ஒரு மெல்லிய அரைவட்ட வடிவ r ஆரமுள்ள கடத்தும் சுற்று (P, Q, R) கிடைத்தள காந்தப்புலம் B இல் அதன் தளம் செங்குத்தாக உள்ளவாறு விழுகிறது. அதன் வேகம் v உள்ளபோது சுற்றில் உருவான மின்னழுத்த வேறுபாடு (NEET 2014)`,
+    options: [`சுழி`, `B v bi r ² / two மற்றும் P உயர் மின்னழுத்தத்தில் இருக்கும்`, `bi r b vமற்றும் R உயர் மின்னழுத்தத்தில் இருக்கும்`, `two r B v மற்றும் R உயர் மின்னழுத்தத்தில் இருக்கும்`],
+    correct: `two r B v மற்றும் R உயர் மின்னழுத்தத்தில் இருக்கும்`,
+  },
+  {
+    id: `c4q3`,
+    chapter: `EM Induction & AC`,
+    text: `t என்ற கணத்தில், ஒரு சுருளோடு தொடர்புடைய பாயம் phi B = 10 t ² - 50 t plus 250 என உள்ளது. T = 3 second இல் தூண்டப்பட்ட மின்னியக்கு விசையானது`,
+    options: [`- 190 Volt`, `- 10 Volt`, `10 Volt`, `190 Volt`],
+    correct: `- 10 Volt`,
+  },
+  {
+    id: `c4q4`,
+    chapter: `EM Induction & AC`,
+    text: `மின்னோட்டமானது 0.05 S நேரத்தில் plus 2 A லிருந்து - 2 A ஆக மாறினால், சுருளில் 8 V மின்னியக்கு விசை தூண்டப்படுகிறது. சுருளின் தன் மின் தூண்டல் எண்`,
+    options: [`0.2 Hendry`, `0.4 Hendry`, `0.8 Hendry`, `0.1 Hendry`],
+    correct: `0.1 Hendry`,
+  },
+  {
+    id: `c4q6`,
+    chapter: `EM Induction & AC`,
+    text: `4 centimeter ² குறுக்குவெட்டுப் பரப்பு கொண்ட ஒரு வட்ட கம்பிச்சுருள் 10 சுற்றுகளைக் கொண்டுள்ளது. அது சென்டிமீட்டருக்கு 15 சுற்றுகள் மற்றும் 10 centimeter ² குறுக்கு வெட்டுப்பரப்பு கொண்ட ஒரு 1m நீண்ட வரிச்சுருளின் மையத்தில் வைக்கப்பட்டுள்ளது. கம்பிச்சுருளின் அச்சானது வரிச்சுருளின் அச்சுடன் பொருந்துகிறது. அவற்றின் பரிமாற்று மின்தூண்டல் எண் யாது?`,
+    options: [`7.54 μH`, `8.54 μH`, `9,54 μH`, `10,54 μH`],
+    correct: `7.54 μH`,
+  },
+  {
+    id: `c4q7`,
+    chapter: `EM Induction & AC`,
+    text: `ஒரு மின்மாற்றியில் முதன்மை மற்றும் துணைச்சுற்றுகளில் முறையே 410 மற்றும் 1230 சுற்றுகள் உள்ளன. முதன்மைச்சுருளில் உள்ள மின்னோட்டம் 6 A எனில், துணைச்சுருளின் மின்னோட்டமானது`,
+    options: [`2 Ampere`, `18 Ampere`, `12 Ampere`, `1 Ampere`],
+    correct: `2 Ampere`,
+  },
+  {
+    id: `c4q8`,
+    chapter: `EM Induction & AC`,
+    text: `ஒரு இறக்கு மின்மாற்றி மின்மூலத்தின் மின்னழுத்த வேறுபாட்டை 220 Volt இல் இருந்து 11 Volt ஆகக் குறைக்கிறது மற்றும் மின்னோட்டத்தை 6 Ampere இல் இருந்து 100 Ampere ஆக உயர்த்துகிறது. அதன் பயனுறுதிறன்`,
+    options: [`1.2`, `0.83`, `0.12`, `0.9`],
+    correct: `0.83`,
+  },
+  {
+    id: `c4q9`,
+    chapter: `EM Induction & AC`,
+    text: `ஒரு மின்சுற்றில் R, L, C மற்றும் A C மின்னழுத்த மூலம் ஆகிய அனைத்தும் தொடராக இணைக்கப்பட்டுள்ளன. L ஆனது சுற்றிலிருந்து நீக்கப்பட்டால், மின்னழுத்த வேறுபாடு மற்றும் மின்னோட்டம் இடையே உள்ள கட்ட வேறுபாடு bi / 3 ஆகும். மாறாக, C ஆனது நீக்கப்பட்டால், கட்ட வேறுபாடானது மீண்டும் pai / 3 என உள்ளது. சுற்றின் திறன் காரணி (NEET 2012)`,
+    options: [`1 / 2`, `1 / root 2`, `1`, `root 3 / 2`],
+    correct: `1`,
+  },
+  {
+    id: `c4q10`,
+    chapter: `EM Induction & AC`,
+    text: `ஒரு தொடர் R L சுற்றில், மின்தடை மற்றும் மின்தூண்டல் மின்மறுப்பு இரண்டும் சமமாக உள்ளன. சுற்றில் மின்னழுத்த வேறுபாடு மற்றும் மின்னோட்டம் இடையே உள்ள கட்ட வேறுபாடு`,
+    options: [`pai / 4`, `pai / 2`, `pai / 6`, `zero`],
+    correct: `pai / 4`,
+  },
+  {
+    id: `c4q11`,
+    chapter: `EM Induction & AC`,
+    text: `ஒரு தொடர் R L C சுற்றில், 100 Ω மின்தடைக்குக் குறுக்கே உள்ள மின்னழுத்த வேறுபாடு 40 Volt ஆகும். ஒத்ததிர்வு அதிர்வெண் omega ஆனது 250 radian per second, C இன் மதிப்பு 4 micro fareday எனில், L க்கு குறுக்கே உள்ள மின்னழுத்த வேறுபாடு`,
+    options: [`600 Volt`, `4000 Volt`, `400 Volt`, `1 Volt`],
+    correct: `400 Volt`,
+  },
+  {
+    id: `c4q12`,
+    chapter: `EM Induction & AC`,
+    text: `ஒரு 20 milli Hendry மின்தூண்டி, 50 micro fareday மின்தேக்கி மற்றும் 40 Ω மின்தடை ஆகியவை ஒரு மின்னியக்கு விசை = 10 sine 340 t கொண்ட மூலத்துடன் தொடராக இணைக்கப்பட்டுள்ளன. AC சுற்றில் திறன் இழப்பு`,
+    options: [`0.76 Watt`, `0.46 Watt`, `0.89 Watt`, `0.67 Watt`],
+    correct: `0.46 Watt`,
+  },
+  {
+    id: `c4q13`,
+    chapter: `EM Induction & AC`,
+    text: `ஒரு சுற்றில் மாறுதிசை மின்னோட்டம் மற்றும் மின்னழுத்த வேறுபாட்டின் கணநேர மதிப்புகள் முறையே I = one / route two × sine 100 phi t × Amps மற்றும் V = one / root two × 100 pai t plus bi / 3 Volt ஆகும். சுற்றில் நுகரப்பட்ட சராசரித்திறன் (வாட் அலகில்) (I I T Main 2012)`,
+    options: [`1 / 4`, `root 3 / 4`, `1 / 2`, `1 / 8`],
+    correct: `1 / 8`,
+  },
+  {
+    id: `c4q14`,
+    chapter: `EM Induction & AC`,
+    text: `ஒரு அலைவுறும் LC சுற்றில் மின்தேக்கியில் உள்ள பெரும மின்னூட்டம் Q ஆகும். ஆற்றலானது மின் மற்றும் காந்தப்புலங்களில் சமமாக சேமிக்கப்படும் போது, மின்னூட்டத்தின் மதிப்பு`,
+    options: [`Q / 2`, `Q / root of 3`, `Q / root of 2`, `Q`],
+    correct: `Q / root of 2`,
+  },
+  {
+    id: `c4q15`,
+    chapter: `EM Induction & AC`,
+    text: `20 / phi ² Hendry மின்தூண்டியானது மின்தேக்குத்திறன் C கொண்ட மின்தேக்கியுடன் இணைக்கப் பட்டுள்ளது. 50 ஹெர்ட்ஸ் இல் பெருமத் திறனை செலுத்தத் தேவையான C இன் மதிப்பானது`,
+    options: [`50 micro Fareday`, `0.5 micro Fareday`, `500 micro Fareday`, `5 micro Fareday`],
+    correct: `5 micro Fareday`,
+  },
+  {
+    id: `c5q1`,
+    chapter: `EM Waves`,
+    text: `ச**ரியான விடையை தேர்ந்தெடுத்து **எழுதுக 1. one / mew not × epsilon not இன் பரிமாணம்`,
+    options: [`L T ⁻¹`, `L ² × t ⁻²`, `L ⁻¹ × T`, `L ⁻² × t ²`],
+    correct: `L ² × t ⁻²`,
+  },
+  {
+    id: `c5q2`,
+    chapter: `EM Waves`,
+    text: `மின்காந்த அலை ஒன்றின் காந்தப்புலத்தின் எண்மதிப்பு 3 × 10⁶ T எனில், அதன் மின்புலத்தின் மதிப்பு என்ன?`,
+    options: [`100 Volt per meter`, `300 Volt per meter`, `600 Volt per meter`, `900 Volt per meter`],
+    correct: `900 Volt per meter`,
+  },
+  {
+    id: `c5q3`,
+    chapter: `EM Waves`,
+    text: `எந்த மின்காந்த அலையைப் பயன்படுத்தி மூடுபனியின் வழியே பொருட்களைக் காண இயலும்`,
+    options: [`மைக்ரோ அலை`, `காமாக்கதிர்வீச்சு`, `X- கதிர்கள்`, `அகச்சிவப்புக்கதிர்கள்`],
+    correct: `அகச்சிவப்புக்கதிர்கள்`,
+  },
+  {
+    id: `c5q4`,
+    chapter: `EM Waves`,
+    text: `மின்காந்த அலைகளைப் பொறுத்து பின்வருவனவற்றுள் தவறான கூற்றுகளாகும்?`,
+    options: [`குறுக்கலை`, `இயந்திர அலைகள் அல்ல`, `நெட்டலை`, `முடுக்கப்பட்ட மின்துகள்களினால் உருவாக்கப்படுகின்றன`],
+    correct: `நெட்டலை`,
+  },
+  {
+    id: `c5q5`,
+    chapter: `EM Waves`,
+    text: `அலையியற்றி ஒன்றைக் கருதுக, அதில் உள்ள மின்னூட்டப்பட்டத் துகளொன்று அதன் சராசரிப்புள்ளியைப் பொறுத்து 300 MHz அதிர்வெண்ணில் அலைவுறுகிறது எனில், அலையியற்றியால் உருவாக்கப்பட மின்காந்த அலையின் அலைநீளத்தின் மதிப்பு`,
+    options: [`1 meter`, `10 meter`, `100 meter`, `1000 meter`],
+    correct: `1 meter`,
+  },
+  {
+    id: `c5q6`,
+    chapter: `EM Waves`,
+    text: `மின்புலம் மற்றும் காந்தப்புலத்தோடு இணைந்த மின்காந்த அலையொன்று எதிர்க்குறி x அச்சுத்திசையில் பரவுகிறது. பின்வருவனவற்றுள் எச்சமன்பாட்டைப் பயன்படுத்தி அந்த மின்காந்த அலையினை குறிப்பிடலாம்.`,
+    options: [`E vector = e not j cap மற்றும் b vector = b not 4k cap`, `E vector = e not k cap மற்றும் b vector = b not j cap`, `E vector = e not I cap மற்றும் b vector b not j cap`, `E vector = e not j cap மற்றும் b vector = b not j cap`],
+    correct: `E vector = e not k cap மற்றும் b vector = b not j cap`,
+  },
+  {
+    id: `c5q7`,
+    chapter: `EM Waves`,
+    text: `வெற்றிடத்தில் பரவும் மின்காந்த அலை ஒன்றின் மின்புலத்தின் சராசரி இருமடிமூல மதிப்பு (ms) 3 Volt per meter எனில் காந்தப்புலத்தின் உச்சமதிப்பு என்ன?`,
+    options: [`1.414 × 10⁻⁸ Tesla`, `1.0 × 10⁻⁸ Tesla`, `2.828 × 10⁻⁸ Tesla`, `2.0 × 10⁻⁸ Tesla`],
+    correct: `1.414 × 10⁻⁸ Tesla`,
+  },
+  {
+    id: `c5q8`,
+    chapter: `EM Waves`,
+    text: `v vector = v I cap என்ற திசைவேகத்துடன் மின்காந்த அலை ஒரு ஊடகத்தில் பரவுகின்றது. இவ்வலையின் மாறுதிசை மின்புலம் plus y அச்சின் திசையில் இருந்தால், அதன் மாறுதிசை காந்தப்புலம் டேஸாக இருக்கும்.`,
+    options: [`- y திசையில்`, `- x திசையில்`, `plus z திசையில்`, `- z திசையில்`],
+    correct: `plus z திசையில்`,
+  },
+  {
+    id: `c5q9`,
+    chapter: `EM Waves`,
+    text: `காந்த ஒரு முனை (magnetic monopole) ஒன்று தோன்றுகிறது எனக் கருதினால், பின்வரும் மேக்ஸ்வெல் சமன்பாடுகளில் எச்சமன்பாட்டை மாற்றியமைக்க வேண்டும்?`,
+    options: [`Closed integral B vector dot d A vector = q closed / epsilon not`, `Closed integral B vector dot d A vector = zero`, `Closed integral B vector dot d l vector = mew not I closed plus mew not × epsilon not × d / d t × integral of S × E vector dat d a vector`, `Closed integral E vector dot d l vector = - d / d t × pai b`],
+    correct: `Closed integral B vector dot d A vector = zero`,
+  },
+  {
+    id: `c5q10`,
+    chapter: `EM Waves`,
+    text: `பிரான்ஹோபர் வரிகள் எவ்வகை நிறமாலைக்கு எடுத்துக்காட்டு?`,
+    options: [`வரி வெளியிடு`, `வரி உட்கவர்`, `பட்டை வெளியிடு`, `பட்டை உட்கவர்`],
+    correct: `வரி உட்கவர்`,
+  },
+  {
+    id: `c5q11`,
+    chapter: `EM Waves`,
+    text: `பின்வருவனவற்றுள்ளது எது மின்காந்த அலையாகும்?`,
+    options: [`alpha கதிர்கள்`, `beeta கதிர்கள்`, `gama கதிர்கள்`, `இவை அனைத்தும்`],
+    correct: `gama கதிர்கள்`,
+  },
+  {
+    id: `c5q12`,
+    chapter: `EM Waves`,
+    text: `பின்வருவனவற்றுள் எது மின்காந்த அலையை உருவாக்கப்பயன்படுகிறது?`,
+    options: [`முருக்குவிக்கப்பட்ட மின்துகள்`, `ரோன திசைவேகத்தில் இயங்கும் மின்துகள்`, `ஓய்வுநிலையிலுள்ள மின்துகள்`, `மின்னூட்டமற்ற ஒரு துகள்`],
+    correct: `முருக்குவிக்கப்பட்ட மின்துகள்`,
+  },
+  {
+    id: `c5q13`,
+    chapter: `EM Waves`,
+    text: `ஒரு சமதள மின்காந்த அலையின் மின்புலம் e = e not sin 10 ⁶ x - omega t எனில் omega வின் மதிப்பு என்ன?`,
+    options: [`0.3 × 10⁻¹⁴ radian per second`, `3 × 10⁻¹⁴ radian per second`, `0.3 × 10¹⁴ radian per second`, `3 × 10¹⁴ radian per second`],
+    correct: `3 × 10¹⁴ radian per second`,
+  },
+  {
+    id: `c5q14`,
+    chapter: `EM Waves`,
+    text: `பின்வருவனவற்றுள் மின்காந்த அலையைப் பொறுத்து தவறான கூற்றுகள் எவை?`,
+    options: [`இது ஆற்றலைக் கடத்துகிறது`, `இது உந்தத்தைக் கடத்துகிறது`, `இது கோண உந்தத்தைக் கடத்துகிறது`, `வெற்றிடத்தில் அதன் அதிர்வெண்ணைப் பொறுத்து வெவ்வேறு வேகங்களில்`],
+    correct: `வெற்றிடத்தில் அதன் அதிர்வெண்ணைப் பொறுத்து வெவ்வேறு வேகங்களில்`,
+  },
+  {
+    id: `c5q15`,
+    chapter: `EM Waves`,
+    text: `மின்காந்த அலையின் மின்புலம் மற்றும் காந்தப்புலங்கள்`,
+    options: [`ஒரே கட்டத்தில் உள்ளன. மேலும் ஒன்றுக்கொன்று செங்குத்து`, `ஒரே கட்டத்தில் இல்லை. மேலும் ஒன்றுக்கொன்று செங்குத்து இல்லை`, `ஒரே கட்டத்தில் உள்ளன. மேலும் ஒன்றுக்கொன்று செங்குத்து இல்லை`, `ஒரே கட்டத்தில் இல்லை. மேலும் ஒன்றுக்கொன்று செங்குத்து`],
+    correct: `ஒரே கட்டத்தில் உள்ளன. மேலும் ஒன்றுக்கொன்று செங்குத்து`,
+  },
+];
+
+const CHAPTER_TAMIL = {
+  "Electrostatics": "நிலைமின்னியல்",
+  "Current Electricity": "மின்னோட்டவியல்",
+  "Magnetism": "காந்தவியல்",
+  "EM Induction & AC": "மின்காந்தத் தூண்டல் & AC",
+  "EM Waves": "மின்காந்த அலைகள்",
+};
+const CHAPTER_ORDER = ["Electrostatics", "Current Electricity", "Magnetism", "EM Induction & AC", "EM Waves"];
+const CHAPTER_VIDEOS = {
+  "Electrostatics": { title: "நிலைமின்னியல் — Important Questions", id: "xf3R-OjAmjc" },
+  "Current Electricity": { title: "மின்னோட்டவியல் — One Shot Full Chapter", id: "lpSWEImHL70" },
+  "Magnetism": { title: "காந்தவியல் — அறிமுகம்", id: "hWpdemMKsXQ" },
+  "EM Induction & AC": { title: "மின்காந்தத் தூண்டல் — One Shot Fast Revision", id: "fxtNtqPIDtE" },
+  "EM Waves": { title: "மின்காந்த அலைகள் — Electromagnetic Spectrum", id: "8urJl1IGdxE" },
+};
+
+// ⚠️ PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE (see setup instructions)
+const APPS_SCRIPT_URL = "PASTE_YOUR_APPS_SCRIPT_URL_HERE";
+
+
+function shuffleArray(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function esc(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+const state = {
+  screen: "welcome", // welcome | quiz | result | review
+  emis: "", name: "", classSection: "", formError: "",
+  shuffled: [], currentIndex: 0, answers: {},
+  scoreInfo: null, saving: false, saveError: "",
+  openVideos: {},
+};
+
+function setState(patch) { Object.assign(state, patch); render(); }
+
+function handleStart() {
+  const emis = document.getElementById("f-emis").value.trim();
+  const name = document.getElementById("f-name").value.trim();
+  const cls = document.getElementById("f-class").value.trim();
+  if (!emis || !name || !cls) {
+    setState({ formError: "தயவுசெய்து அனைத்து விவரங்களையும் நிரப்பவும்." });
+    return;
+  }
+  const shuffled = shuffleArray(QUESTIONS).map(q => ({ ...q, options: shuffleArray(q.options) }));
+  setState({ emis, name, classSection: cls, formError: "", shuffled, currentIndex: 0, answers: {}, screen: "quiz" });
+}
+
+function selectOption(optIndex) {
+  const q = state.shuffled[state.currentIndex];
+  const opt = q.options[optIndex];
+  state.answers[q.id] = opt;
+  render();
+}
+
+function goPrev() {
+  if (state.currentIndex > 0) setState({ currentIndex: state.currentIndex - 1 });
+}
+
+function goNext() {
+  if (state.currentIndex < state.shuffled.length - 1) {
+    setState({ currentIndex: state.currentIndex + 1 });
+  } else {
+    handleSubmit();
+  }
+}
+
+function handleSubmit() {
+  let score = 0;
+  const chapterScores = {};
+  CHAPTER_ORDER.forEach(c => chapterScores[c] = { correct: 0, total: 0 });
+  state.shuffled.forEach(q => {
+    chapterScores[q.chapter].total += 1;
+    if (state.answers[q.id] === q.correct) {
+      score += 1;
+      chapterScores[q.chapter].correct += 1;
+    }
+  });
+  const total = state.shuffled.length;
+  const percentage = Math.round((score / total) * 1000) / 10;
+  state.scoreInfo = { score, total, chapterScores };
+  state.saving = true;
+  state.saveError = "";
+  state.screen = "result";
+  render();
+
+  const record = {
+    emis: state.emis, name: state.name, classSection: state.classSection,
+    score, total, percentage, timestamp: new Date().toISOString(),
+  };
+
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf("PASTE_YOUR") === 0) {
+    state.saving = false;
+    state.saveError = "⚠️ Apps Script URL அமைக்கப்படவில்லை — பதில் சேமிக்கப்படவில்லை.";
+    render();
+    return;
+  }
+
+  fetch(APPS_SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(record),
+  }).then(() => {
+    state.saving = false;
+    render();
+  }).catch(() => {
+    state.saving = false;
+    state.saveError = "முடிவுகளைச் சேமிக்க முடியவில்லை. இணைய இணைப்பைச் சரிபார்க்கவும்.";
+    render();
+  });
+}
+
+function resetForNewStudent() {
+  setState({
+    screen: "welcome", emis: "", name: "", classSection: "", formError: "",
+    shuffled: [], currentIndex: 0, answers: {}, scoreInfo: null,
+    saving: false, saveError: "", openVideos: {},
+  });
+}
+
+function openVideo(qid) {
+  state.openVideos[qid] = true;
+  render();
+}
+
+function goReview() { setState({ screen: "review" }); }
+function backToResult() { setState({ screen: "result" }); }
+
+// ---------- RENDER ----------
+function render() {
+  document.body.className = "";
+  const app = document.getElementById("app");
+  if (state.screen === "welcome") app.innerHTML = renderWelcome();
+  else if (state.screen === "quiz") app.innerHTML = renderQuiz();
+  else if (state.screen === "result") app.innerHTML = renderResult();
+  else if (state.screen === "review") app.innerHTML = renderReview();
+}
+
+function renderWelcome() {
+  return `
+    <div class="hero">
+      <p class="eyebrow">12th Std · Volume 1</p>
+      <h1>இயற்பியல் பயிற்சித் தேர்வு</h1>
+      <p>Physics Practice Test — ${QUESTIONS.length} கேள்விகள்</p>
+    </div>
+    <div class="card panel" style="border-top:none; border-radius:0 0 16px 16px;">
+      <div class="field">
+        <label>EMIS Number</label>
+        <input type="text" id="f-emis" placeholder="எ.கா. 33012345678" value="${esc(state.emis)}">
+      </div>
+      <div class="field">
+        <label>பெயர் (Name)</label>
+        <input type="text" id="f-name" placeholder="உங்கள் பெயர்" value="${esc(state.name)}">
+      </div>
+      <div class="field">
+        <label>வகுப்பு / பிரிவு (Class/Section)</label>
+        <input type="text" id="f-class" placeholder="எ.கா. 12-A" value="${esc(state.classSection)}">
+      </div>
+      ${state.formError ? `<p class="err">${esc(state.formError)}</p>` : ""}
+      <button class="btn btn-primary" onclick="handleStart()">தேர்வைத் தொடங்கு · Start Test</button>
+      <p class="hint">ஒவ்வொரு மாணவருக்கும் கேள்விகள் மற்றும் விடைத் தேர்வுகளின் வரிசை வெவ்வேறாக இருக்கும்.</p>
+    </div>
+  `;
+}
+
+function renderQuiz() {
+  const q = state.shuffled[state.currentIndex];
+  const pct = ((state.currentIndex + 1) / state.shuffled.length) * 100;
+  const isLast = state.currentIndex === state.shuffled.length - 1;
+  const selected = state.answers[q.id];
+  const optsHtml = q.options.map((opt, idx) => {
+    const isSel = selected === opt;
+    return `<button class="opt ${isSel ? "selected" : ""}" onclick="selectOption(${idx})">
+      <span class="opt-letter">${String.fromCharCode(65 + idx)}</span>${esc(opt)}
+    </button>`;
+  }).join("");
+
+  return `
+    <div class="card" style="padding:14px 16px;">
+      <div class="qtop">
+        <span class="chip">${esc(CHAPTER_TAMIL[q.chapter])}</span>
+        <span class="qcount">${state.currentIndex + 1} / ${state.shuffled.length}</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:${pct}%"></div>
+        <div class="progress-dot" style="left:calc(${pct}% - 5px)"></div>
+      </div>
+    </div>
+    <div class="card qcard">
+      <p class="qtext">${esc(q.text)}</p>
+      ${optsHtml}
+    </div>
+    <div class="navrow">
+      <button class="btn btn-outline" ${state.currentIndex === 0 ? "disabled" : ""} onclick="goPrev()">← பின்</button>
+      <button class="btn btn-dark" onclick="goNext()">${isLast ? "சமர்ப்பி · Submit" : "அடுத்து →"}</button>
+    </div>
+  `;
+}
+
+function renderResult() {
+  const s = state.scoreInfo;
+  const chBars = CHAPTER_ORDER.map(c => {
+    const cs = s.chapterScores[c];
+    const pct = cs.total ? (cs.correct / cs.total) * 100 : 0;
+    return `<div class="chbar-row">
+      <div class="chbar-label"><span>${esc(CHAPTER_TAMIL[c])}</span><span class="ui-font" style="font-weight:600">${cs.correct}/${cs.total}</span></div>
+      <div class="chbar-track"><div class="chbar-fill" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join("");
+
+  let statusHtml;
+  if (state.saving) statusHtml = `<p class="toast" style="color:#94a3b8;">முடிவு சேமிக்கப்படுகிறது...</p>`;
+  else if (state.saveError) statusHtml = `<p class="toast" style="color:#e11d48;">${esc(state.saveError)}</p>`;
+  else statusHtml = `<p class="toast" style="color:#0d9488;">✓ முடிவு பதிவு செய்யப்பட்டது</p>`;
+
+  return `
+    <div class="hero" style="padding:32px 24px 40px;">
+      <p class="eyebrow">முடிவு · Result</p>
+      <div class="score-big">${s.score}<span class="score-total">/${s.total}</span></div>
+      <p style="color:#c7d2fe;margin-top:8px;">${Math.round((s.score / s.total) * 1000) / 10}%</p>
+    </div>
+    <div class="card panel" style="border-top:none; border-radius:0 0 16px 16px;">
+      <p class="ui-font" style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.04em;margin:0 0 10px;">அலகு வாரியான முடிவு</p>
+      ${chBars}
+      ${statusHtml}
+      <button class="btn btn-outline" style="margin-top:6px;" onclick="goReview()">விடைகளை மீள்பார்வை செய் · Review Answers</button>
+      <button class="btn btn-dark" style="margin-top:10px;" onclick="resetForNewStudent()">அடுத்த மாணவர் · New Student</button>
+    </div>
+  `;
+}
+
+function renderReview() {
+  const chapters = CHAPTER_ORDER.map(chapterName => {
+    const qs = state.shuffled.filter(q => q.chapter === chapterName);
+    if (qs.length === 0) return "";
+    const video = CHAPTER_VIDEOS[chapterName];
+    const qsHtml = qs.map(q => {
+      const selected = state.answers[q.id];
+      const isCorrect = selected === q.correct;
+      const isUnanswered = !selected;
+      let ansHtml;
+      if (isUnanswered) ansHtml = `<p class="rev-ans rev-skip">பதிலளிக்கவில்லை</p>`;
+      else if (isCorrect) ansHtml = `<p class="rev-ans rev-correct">✓ ${esc(selected)}</p>`;
+      else ansHtml = `<p class="rev-ans rev-wrong">✗ உங்கள் விடை: ${esc(selected)}</p><p class="rev-ans rev-correct">✓ சரியான விடை: ${esc(q.correct)}</p>`;
+
+      let videoHtml = "";
+      if (video) {
+        if (state.openVideos[q.id]) {
+          videoHtml = `<div class="video-box"><iframe src="https://www.youtube.com/embed/${video.id}?autoplay=1" title="${esc(video.title)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
+        } else {
+          videoHtml = `<div class="video-box">
+            <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${esc(video.title)}">
+            <button class="play-overlay" onclick="openVideo('${q.id}')">
+              <span class="play-btn"></span>
+              <span class="video-title">${esc(video.title)}</span>
+            </button>
+          </div>`;
+        }
+      }
+      return `<div class="rev-q"><p class="rev-qtext">${esc(q.text)}</p>${ansHtml}${videoHtml}</div>`;
+    }).join("");
+
+    return `<div class="card rev-chapter">
+      <div class="rev-chapter-head">${esc(CHAPTER_TAMIL[chapterName])}</div>
+      ${qsHtml}
+    </div>`;
+  }).join("");
+
+  return `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <h2 class="ui-font" style="font-size:18px;font-weight:700;color:#1e1b4b;margin:0;">விடைகள் மீள்பார்வை · Review</h2>
+      <button class="link-btn" style="width:auto;margin:0;" onclick="backToResult()">← Back</button>
+    </div>
+    ${chapters}
+    <button class="btn btn-dark" onclick="resetForNewStudent()">அடுத்த மாணவர் · New Student</button>
+  `;
+}
+
+render();
+</script>
+</body>
+</html>
